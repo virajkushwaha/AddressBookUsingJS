@@ -173,6 +173,33 @@ class AddressBook{
         this.displaycontacts();
     }
 
+    sortByStateCityZip(){
+        this.contacts.sort((a, b) => {
+            if (a.state < b.state) {
+                return -1;
+                }
+                if (a.state > b.state) {
+                    return 1;
+                    }
+                    if (a.city < b.city) {
+                        return -1;
+                        }
+                        if (a.city > b.city) {
+                            return 1;
+                            }
+                            if (a.zip < b.zip) {
+                                return -1;
+                                }
+                                if (a.zip > b.zip) {
+                                    return 1;
+                                    }
+                                    return 0;
+                                    }
+                                    );
+        console.log("Contacts sorted by State, City, and Zip:");
+        this.displaycontacts();
+        }
+
 }   
 
 // Example Usage
@@ -211,6 +238,8 @@ try {
     addressBook.countByCity("Bhopal");
 
     addressBook.sortByName();
+
+    addressBook.sortByStateCityZip();
     
 } catch (error) {
     console.error(error);
