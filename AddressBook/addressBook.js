@@ -91,7 +91,11 @@ class AddressBook{
     }
     //Method to add contact
     addContact(contact){
+        let checkContact = this.contacts.find(c => c.firstName === contact.firstName && c.lastName === contact.lastName);
+        if(checkContact)throw new Error("Contact already exists in the Address Book.");
+        
         this.contacts.push(contact);
+        
     }
     //Method to display contacts
     displaycontacts(){
@@ -122,6 +126,9 @@ class AddressBook{
         let totalContacts = this.contacts.reduce((count, contact) => count + 1, 0);
         console.log("Number of contacts in Address Book: " + totalContacts);
     }
+
+    
+
 }   
 
 // Example Usage
@@ -129,10 +136,12 @@ try {
     let contact1 = new AddressBookContacts("Viraj", "Kushwaha", "Street 5", "Bhopal", "Madhya Pradesh", "462001", "9876543210", "viraj@example.com");
     let contact2 = new AddressBookContacts("Prince", "Raj", "Street 6", "Indore", "Madhya Pradesh", "452001", "8765432109", "princeraj@gmail.com");
     let contact3 = new AddressBookContacts("Kanchan", "Singh", "LIG-45 ", "Bhopal", "Madhya Pradesh", "452001", "8765435409", "kanchan@gmail.com");
+    let contact4 = new AddressBookContacts("Kancha", "Singh", "LIG-45 ", "Bhopal", "Madhya Pradesh", "452001", "8765435409", "kanchan@gmail.com");
     let addressBook = new AddressBook();
     addressBook.addContact(contact1);
     addressBook.addContact(contact2);
     addressBook.addContact(contact3);
+    addressBook.addContact(contact4);
     console.log("Contacts in Address Book:");
     addressBook.displaycontacts();
     let contact = addressBook.findContact("Viraj", "Kushwaha");
