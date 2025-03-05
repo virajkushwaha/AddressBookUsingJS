@@ -99,17 +99,7 @@ class AddressBook{
             console.log(contact);
         }
     }
-    //Method to find contact
-    findContact(firstName, lastName){
-        return this.contacts.find(contact => contact.firstName === firstName && contact.lastName === lastName);
-    }
-    //Method to update contact
-    updateContact(firstName, lastName, contact){
-        let index = this.contacts.findIndex(contact => contact.firstName === firstName && contact.lastName === lastName);
-        if(index !== -1){
-            this.contacts[index] = contact;
-        }
-    }
+  
 }
 
 // Example Usage
@@ -120,11 +110,7 @@ try {
     addressBook.addContact(contact1);
     addressBook.addContact(contact2);
     addressBook.displaycontacts();
-    let contact = addressBook.findContact("Viraj", "Kushwaha");
-    console.log(contact);
-    let updatedContact = new AddressBookContacts("Viraj", "Kushwaha", "Street 5", "Bhopal", "Madhya Pradesh", "462001", "9876543210", "viraj@gmail.com");
-    addressBook.updateContact("Viraj", "Kushwaha", updatedContact);
-    addressBook.displaycontacts();
+  
 } catch (error) {
     console.error(error);
 }
