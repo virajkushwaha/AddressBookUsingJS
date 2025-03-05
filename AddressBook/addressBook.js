@@ -117,7 +117,12 @@ class AddressBook{
             this.contacts.splice(index, 1);
         }
     }
-}
+
+    numberOfContacts(){
+        let totalContacts = this.contacts.reduce((count, contact) => count + 1, 0);
+        console.log("Number of contacts in Address Book: " + totalContacts);
+    }
+}   
 
 // Example Usage
 try {
@@ -140,6 +145,7 @@ try {
     console.log("Deleted Contact:");
     addressBook.deleteContact("Prince", "Raj");
     addressBook.displaycontacts();
+    addressBook.numberOfContacts();
 } catch (error) {
     console.error(error);
 }
