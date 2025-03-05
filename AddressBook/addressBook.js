@@ -126,11 +126,34 @@ class AddressBook{
         let totalContacts = this.contacts.reduce((count, contact) => count + 1, 0);
         console.log("Number of contacts in Address Book: " + totalContacts);
     }
-
+    //Method to find contacts by city
     findContactByCity(city){
         return this.contacts.filter(contact => contact.city === city);
     }
+    //Method to count contacts by city
+    countByCity(city){
 
+        let totalContacts = this.contacts.reduce((count, contact) => {
+            if(contact.city === city){
+                count++;
+            }
+            return count;
+        }, 0);
+        console.log("Number of contacts in " + city + ": " + totalContacts);
+    }
+    //Method to view contacts by city or state
+    viewPersonsByCityOrState() {
+        let groupedByCityOrState = this.contacts.reduce((acc, contact) => {
+            let key = `${contact.city}, ${contact.state}`;
+            if (!acc[key]) {
+                acc[key] = [];
+            }
+            acc[key].push(`${contact.firstName} ${contact.lastName}`);
+            return acc;
+        }, {});
+        console.log("Persons grouped by City and State:", groupedByCityOrState);
+        return groupedByCityOrState;
+    }
     
 
 }   
@@ -163,7 +186,10 @@ try {
     console.log("Contacts in Bhopal:");
     let contactsInBhopal = addressBook.findContactByCity("Bhopal");
     console.log(contactsInBhopal);
+    
+    addressBook.countByCity("Bhopal");
 
+    addressBook.viewPersonsByCityOrState();
     
 } catch (error) {
     console.error(error);
