@@ -110,20 +110,35 @@ class AddressBook{
             this.contacts[index] = contact;
         }
     }
+
+    deleteContact(firstName, lastName){
+        let index = this.contacts.findIndex(contact => contact.firstName === firstName && contact.lastName === lastName);
+        if(index !== -1){
+            this.contacts.splice(index, 1);
+        }
+    }
 }
 
 // Example Usage
 try {
     let contact1 = new AddressBookContacts("Viraj", "Kushwaha", "Street 5", "Bhopal", "Madhya Pradesh", "462001", "9876543210", "viraj@example.com");
-    let contact2 = new AddressBookContacts("John", "Doe", "Street 6", "Indore", "Madhya Pradesh", "452001", "8765432109", "princeraj@gmail.com");
+    let contact2 = new AddressBookContacts("Prince", "Raj", "Street 6", "Indore", "Madhya Pradesh", "452001", "8765432109", "princeraj@gmail.com");
+    let contact3 = new AddressBookContacts("Kanchan", "Singh", "LIG-45 ", "Bhopal", "Madhya Pradesh", "452001", "8765435409", "kanchan@gmail.com");
     let addressBook = new AddressBook();
     addressBook.addContact(contact1);
     addressBook.addContact(contact2);
+    addressBook.addContact(contact3);
+    console.log("Contacts in Address Book:");
     addressBook.displaycontacts();
     let contact = addressBook.findContact("Viraj", "Kushwaha");
+    console.log("Contact found:");
     console.log(contact);
     let updatedContact = new AddressBookContacts("Viraj", "Kushwaha", "Street 5", "Bhopal", "Madhya Pradesh", "462001", "9876543210", "viraj@gmail.com");
     addressBook.updateContact("Viraj", "Kushwaha", updatedContact);
+    console.log("Updated Contact:");
+    addressBook.displaycontacts();
+    console.log("Deleted Contact:");
+    addressBook.deleteContact("Prince", "Raj");
     addressBook.displaycontacts();
 } catch (error) {
     console.error(error);
