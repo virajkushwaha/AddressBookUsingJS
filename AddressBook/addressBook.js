@@ -165,6 +165,14 @@ class AddressBook{
         console.log("Number of contacts in " + city + ": " + totalContacts);    
     }
 
+    sortByName(){
+        this.contacts.sort((a, b) => {
+            return a.firstName.localeCompare(b.firstName);
+        });
+        console.log("Contacts sorted by First Name:");
+        this.displaycontacts();
+    }
+
 }   
 
 // Example Usage
@@ -201,6 +209,8 @@ try {
     addressBook.viewPersonsByCityOrState();
 
     addressBook.countByCity("Bhopal");
+
+    addressBook.sortByName();
     
 } catch (error) {
     console.error(error);
