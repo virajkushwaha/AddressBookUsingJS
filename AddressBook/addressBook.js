@@ -1,42 +1,116 @@
-class AddressBook {
+class AddressBookContacts {
     constructor(firstName, lastName, address, city, state, zip, phone, email) {
-        // Assign values if all validations pass
+        //Validate First Name
+        if (!this.isValidFirstName(firstName)) {
+            throw new Error("Invalid First Name: Must start with an uppercase letter and have at least 3 characters.");
+        }
         this.firstName = firstName;
+
+        //Validate Last Name
+        if (!this.isValidLastName(lastName)) {
+            throw new Error("Invalid Last Name: Must start with an uppercase letter and have at least 3 characters.");
+        }
         this.lastName = lastName;
+
+        //Validate Address
+
+        if (!this.isValidAddress(address)) {
+            throw new Error("Invalid Address: Must have at least 4 characters and can include letters, numbers, spaces, and special characters (,.-).");
+        }
         this.address = address;
+
+        //Validate City
+        if (!this.isValidCity(city)) {
+            throw new Error("Invalid City: Must have at least 4 alphabetic characters.");
+        }
         this.city = city;
+        
+        //Validate State
+        if (!this.isValidState(state)) {
+            throw new Error("Invalid State: Must have at least 4 alphabetic characters.");
+        }
         this.state = state;
+
+        //Validate Zip
+        if (!this.isValidZip(zip)) {
+            throw new Error("Invalid Zip: Must be a 6-digit number starting from 1-9.");
+        }
         this.zip = zip;
+
+        //Validate Phone
+        if (!this.isValidPhone(phone)) {
+            throw new Error("Invalid Phone: Must be a 10-digit number starting with 7, 8, or 9.");
+        }
         this.phone = phone;
+
+        //Validate Email
+        if (!this.isValidEmail(email)) {
+            throw new Error("Invalid Email: Must be a valid email format (e.g., example@domain.com).");
+        }
         this.email = email;
     }
 
-    // Validation Functions using RegEx
-    validateName(name) {
-        return /^[A-Z][a-zA-Z]{2,}$/.test(name);
+    //Methods to validate the contact details
+    isValidFirstName(name) {
+        return /^[A-Z][a-z]{2,}$/.test(name);
     }
 
-    validateAddress(value) {
-        return /^[a-zA-Z0-9\s]{4,}$/.test(value);
+    isValidLastName(name) {
+        return /^[A-Z][a-z]{2,}$/.test(name);
     }
 
-    validateZip(zip) {
-        return /^\d{6}$/.test(zip);
+    isValidAddress(address) {
+        return /^[A-Za-z0-9\s,.-]{4,}$/.test(address);
     }
 
-    validatePhone(phone) {
-        return /^[6-9]\d{9}$/.test(phone);
+    isValidCity(city) {
+        return /^[A-Za-z]{4,}$/.test(city);
     }
 
-    validateEmail(email) {
-        return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
+    isValidState(state) {
+        return /^[A-Za-z\s]{4,}$/.test(state);
     }
+
+    isValidZip(zip) {
+        return /^[1-9][0-9]{5}$/.test(zip);
+    }
+
+    isValidPhone(phone) {
+        return /^[789][0-9]{9}$/.test(phone);
+    }
+
+    isValidEmail(email) {
+        return /^[a-zA-Z0-9]+([._+-][0-9a-zA-Z]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z]{2,}){1,2}$/.test(email);
+    }
+}
+
+class AddressBook{
+    //Array to store contacts
+    constructor(){
+        this.contacts = [];
+    }
+    //Method to add contact
+    addContact(contact){
+        this.contacts.push(contact);
+    }
+    //Method to display contacts
+    displaycontacts(){
+        for(let contact of this.contacts){
+            console.log(contact);
+        }
+    }
+  
 }
 
 // Example Usage
 try {
-    let contact1 = new AddressBook("Viraj", "Kushwaha", "Street 5", "Bhopal", "MP", "462001", "9876543210", "viraj@example.com");
-    console.log("Valid Contact Created Successfully:", contact1);
+    let contact1 = new AddressBookContacts("Viraj", "Kushwaha", "Street 5", "Bhopal", "Madhya Pradesh", "462001", "9876543210", "viraj@example.com");
+    let contact2 = new AddressBookContacts("John", "Doe", "Street 6", "Indore", "Madhya Pradesh", "452001", "8765432109", "princeraj@gmail.com");
+    let addressBook = new AddressBook();
+    addressBook.addContact(contact1);
+    addressBook.addContact(contact2);
+    addressBook.displaycontacts();
+  
 } catch (error) {
-    console.error(error.message);
+    console.error(error);
 }
