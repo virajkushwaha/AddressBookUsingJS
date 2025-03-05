@@ -155,6 +155,15 @@ class AddressBook{
         return groupedByCityOrState;
     }
     
+    countByCity(city){
+        let totalContacts = this.contacts.reduce((count, contact) => {
+            if(contact.city === city){
+                count++;
+            }
+            return count;
+        }, 0);
+        console.log("Number of contacts in " + city + ": " + totalContacts);    
+    }
 
 }   
 
@@ -190,6 +199,8 @@ try {
     addressBook.countByCity("Bhopal");
 
     addressBook.viewPersonsByCityOrState();
+
+    addressBook.countByCity("Bhopal");
     
 } catch (error) {
     console.error(error);
