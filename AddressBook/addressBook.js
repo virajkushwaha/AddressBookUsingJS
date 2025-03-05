@@ -114,17 +114,21 @@ class AddressBook{
             this.contacts[index] = contact;
         }
     }
-
+    //Method to delete contact
     deleteContact(firstName, lastName){
         let index = this.contacts.findIndex(contact => contact.firstName === firstName && contact.lastName === lastName);
         if(index !== -1){
             this.contacts.splice(index, 1);
         }
     }
-
+    //Method to get number of contacts
     numberOfContacts(){
         let totalContacts = this.contacts.reduce((count, contact) => count + 1, 0);
         console.log("Number of contacts in Address Book: " + totalContacts);
+    }
+
+    findContactByCity(city){
+        return this.contacts.filter(contact => contact.city === city);
     }
 
     
@@ -152,9 +156,15 @@ try {
     console.log("Updated Contact:");
     addressBook.displaycontacts();
     console.log("Deleted Contact:");
-    addressBook.deleteContact("Prince", "Raj");
+    addressBook.deleteContact("Kancha", "Singh");
     addressBook.displaycontacts();
+    console.log("Contacts:");
     addressBook.numberOfContacts();
+    console.log("Contacts in Bhopal:");
+    let contactsInBhopal = addressBook.findContactByCity("Bhopal");
+    console.log(contactsInBhopal);
+
+    
 } catch (error) {
     console.error(error);
 }
